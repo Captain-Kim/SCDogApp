@@ -9,7 +9,7 @@ export interface Sponsor {
   amounts: number;
 }
 
-const ITEMS_PER_PAGE = 10; // 스크롤 한 번 당 fetch할 데이터의 개수
+const ITEMS_PER_PAGE = 20; // 스크롤 한 번 당 fetch할 데이터의 개수
 
 const fetchSponsorData = async (page: number): Promise<Sponsor[]> => {
 

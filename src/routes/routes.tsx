@@ -21,7 +21,7 @@ const AppRoutes = () => {
           <Route path="/expenselist/detail/:uuid" element={<ExpenseList />} />
         </Routes>
       </Layout>
-      <Footer />
+      <Footer/>
     </Router>
   );
 };
