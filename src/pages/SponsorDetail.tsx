@@ -21,11 +21,13 @@ const SponsorDetail = () => {
           </div>
           <h1 className="text-4xl font-extrabold mb-4 text-gray-900 dark:text-white">후원 감사장</h1>
           <p className="text-2xl text-gray-700 dark:text-gray-300 mb-6">
-            <strong>{sponsor?.name}</strong> 님, 후원해주셔서 진심으로 감사드립니다!
+            <strong>{sponsor?.name}</strong> 님,
           </p>
-
+          <p className="text-2xl text-gray-700 dark:text-gray-300 mb-6">
+            따뜻한 마음 감사합니다.
+          </p>
           <div className="dark:bg-gray-700 p-6 rounded-lg mb-6">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-2"><strong className="text-7xl text-argentinianBlue">{sponsor?.amounts.toLocaleString()}</strong> 원</p>
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-2"><strong className="text-5xl text-argentinianBlue">{sponsor?.amounts.toLocaleString()}</strong> 원</p>
           </div>
           <p className="text-lg text-gray-700 dark:text-gray-300">
             보내주신 성원은 꼭 필요한 곳에 사용하겠습니다.
