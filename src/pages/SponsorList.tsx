@@ -36,7 +36,7 @@ const SponsorList = () => {
         ))}
         {isFetching && <LoadingSpinner />}
 
-        <div className='h-5' ref={ref}></div>
+        <div className='h-10' ref={ref}></div>
       </div>
     </div>
   );
