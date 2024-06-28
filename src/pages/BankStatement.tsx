@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useSponsorshipAll from "../hooks/useSponsorshipData";
 import { useCommaFormat } from "../hooks/useCommaFormat";
 import LoadingSpinner from "../components/Loading";
+import { useLatestDate } from "../hooks/useLatestDate";
 
 interface Stat {
   id: number;
@@ -27,6 +28,7 @@ const initialStats: Stat[] = [
 
 export default function BankStatement() {
   const { data: sponsorshipAll, error, isPending } = useSponsorshipAll();
+  const { data: latestDate } = useLatestDate();
 
   const [stats, setStats] = useState<Stat[]>(initialStats);
 
@@ -70,13 +72,14 @@ export default function BankStatement() {
     }
   }, [sponsorshipAll]);
 
-  if (isPending) return <div><LoadingSpinner/></div>;
+  if (isPending) return <div><LoadingSpinner /></div>;
   if (error) return <div>Error loading data: {error.message}</div>;
 
   return (
     <div className=" py-12 sm:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h1 className="text-3xl font-bold mb-8 text-center">후원금 전체 내역</h1>
+        <p>최근 업데이트 일: {latestDate ? new Date(latestDate).toLocaleDateString() : '데이터를 불러오는 중입니다...'}</p>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {stats.map((stat) => (
             <div

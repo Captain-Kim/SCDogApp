@@ -38,10 +38,10 @@ const Header = () => {
       </div>
       <div className={`${isOpen ? 'block' : 'hidden'} transition-all duration-300 ease-in-out`}>
         <nav className="flex flex-col space-y-2 px-4 pb-4">
-          <Link to="/" className="text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400">
+          <Link to="/" className="text-right text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400">
             후원계좌 현황
           </Link>
-          <Link to="/sponsorlist" className="text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400">
+          <Link to="/sponsorlist" className="text-right text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400">
             후원자 목록
           </Link>
         </nav>
