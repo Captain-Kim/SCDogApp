@@ -11,7 +11,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<BankStatement />} />
         <Route path="/sponsorlist" element={<SponsorList />} />
-        <Route path="/sponsorlist/detail/:id" element={<SponsorDetail />} />
+        <Route path="/sponsorlist/detail/:uuid" element={<SponsorDetail />} />
       </Routes>
     </Router>
   );
