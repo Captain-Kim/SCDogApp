@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { useSponsorDetail } from '../hooks/useSponsorDetail';
 import LoadingSpinner from '../components/Loading';
+import SponsorAccordion from '../components/SponsorAccordion';
 
 const SponsorDetail = () => {
   const { uuid } = useParams<{ uuid: string }>();
   const { data: sponsor, error, isPending } = useSponsorDetail(uuid!);
 
-  if (isPending) return <div><LoadingSpinner/></div>;
+  if (isPending) return <div><LoadingSpinner /></div>;
   if (error) return <div>Error loading sponsor detail: {error.message}</div>;
 
   return (
@@ -38,6 +39,7 @@ const SponsorDetail = () => {
           <p className="text-gray-700 dark:text-gray-300 mt-2">{new Date(sponsor?.datetime).toLocaleDateString()}</p>
         </div>
       </div>
+      <SponsorAccordion />
     </div>
   );
 };
