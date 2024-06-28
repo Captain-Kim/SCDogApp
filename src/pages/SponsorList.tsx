@@ -9,6 +9,8 @@ const SponsorList = () => {
   const { ref, inView } = useInView({ threshold: 0 });
   const { data: sponsors, isFetching, fetchNextPage, hasNextPage, error } = useSponsorList();
 
+  console.log(sponsors);
+
   useEffect(
     () => {
       if (!(inView && hasNextPage)) return;
