@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useSponsorshipAll from "../hooks/useSponsorshipData";
 import { useCommaFormat } from "../hooks/useCommaFormat";
+import LoadingSpinner from "../components/Loading";
 
 interface Stat {
   id: number;
@@ -26,7 +27,7 @@ const initialStats: Stat[] = [
 
 export default function BankStatement() {
   const { data: sponsorshipAll, error, isPending } = useSponsorshipAll();
-  
+
   const [stats, setStats] = useState<Stat[]>(initialStats);
 
   useEffect(() => {
@@ -69,7 +70,7 @@ export default function BankStatement() {
     }
   }, [sponsorshipAll]);
 
-  if (isPending) return <div>Loading...</div>;
+  if (isPending) return <div><LoadingSpinner/></div>;
   if (error) return <div>Error loading data: {error.message}</div>;
 
   return (

@@ -1,21 +1,12 @@
-import { useSponsorList } from '../hooks/useSponsorList';
+import { useExpenseList } from '../hooks/useExpenseList';
 import { Link } from 'react-router-dom';
 import { useCommaFormat } from '../hooks/useCommaFormat';
 import LoadingSpinner from '../components/Loading';
-import { useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
 
-const SponsorList = () => {
-  const { ref, inView } = useInView({ threshold: 0 });
-  const { data: sponsors, isFetching, fetchNextPage, hasNextPage, error } = useSponsorList();
+const ExpenseList = () => {
+  const { data: sponsors, error, isPending } = useExpenseList();
 
-  useEffect(
-    () => {
-      if (!(inView && hasNextPage)) return;
-      fetchNextPage();
-    }
-    , [hasNextPage, inView, fetchNextPage]);
-
+  if (isPending) return <div><LoadingSpinner/></div>;
   if (error) return <div>Error loading data: {error.message}</div>;
 
   return (
@@ -32,12 +23,9 @@ const SponsorList = () => {
             </div>
           </Link>
         ))}
-        {isFetching && <LoadingSpinner />}
-
-        <div className='h-5' ref={ref}></div>
       </div>
     </div>
   );
 };
 
-export default SponsorList;
+export default ExpenseList;

@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useSponsorDetail } from '../hooks/useSponsorDetail';
+import LoadingSpinner from '../components/Loading';
 
 const SponsorDetail = () => {
   const { uuid } = useParams<{ uuid: string }>();
   const { data: sponsor, error, isPending } = useSponsorDetail(uuid!);
 
-  if (isPending) return <div>Loading...</div>;
+  if (isPending) return <div><LoadingSpinner/></div>;
   if (error) return <div>Error loading sponsor detail: {error.message}</div>;
 
   return (
