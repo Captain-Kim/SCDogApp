@@ -11,8 +11,6 @@ const ExpenseList = () => {
 
   const { data: latestDate } = useLatestDate();
 
-  console.log('익스펜스', expenses);
-
   if (isPending) return <div><LoadingSpinner /></div>;
   if (error) return <div>Error loading data: {error.message}</div>;
 
@@ -32,7 +30,7 @@ const ExpenseList = () => {
         {expenses && expenses.map((expense) => (
           <Link to={`/expenselist/detail/${expense.uuid}`} key={expense.uuid}>
             <div className="bg-white p-6 rounded-lg shadow-md transition-transform duration-400 ease-in-out transform hover:-translate-y-2 border border-gray-300">
-              <p className=" font-semibold mb-2">{expense.serielnumbers}</p>
+              <h2 className="text-xl font-semibold mb-2 text-pastelRed">{useCommaFormat(Math.abs(expense.amounts))}원</h2>              <p className=" font-semibold mb-2">{expense.serielnumbers}</p>
               <div className="h-[150px]">
                 <p className="text-gray-700">{expense.details.content[0]}</p>
               </div>

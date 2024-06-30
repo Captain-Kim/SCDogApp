@@ -1,4 +1,5 @@
 import supabase from "./supabase";
+import { Expense } from "../types/type";
 
 // 전체 data fetch
 export const fetchAllData = async () => {
@@ -30,13 +31,33 @@ export const fetchSponsorshipData = async () => {
 };
 
 // 전체 지출내역 fetch
-export const fetchExpenseData = async () => {
+export const fetchExpenseData = async () : Promise<Expense[]> => {
   const { data, error } = await supabase
     .from('bankstatement')
     .select('uuid, serielnumbers, securedname, datetime, amounts, details, securedaccountnumber, spendingmethods, receiptpics, bankname')
     .eq('transactiontype','지출')
     .order('datetime', { ascending: false }); // 내림차순으로 정렬
     
+
+  if (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+
+  return data;
+};
+
+// 특정 지출내역 fetch
+export const fetchExpenseUUID = async (uuid: string) => {
+  if (!uuid) {
+    throw new Error('UUID가 인식되지 않았습니다.');
+  }
+  
+  const { data, error } = await supabase
+    .from('bankstatement')
+    .select('uuid, serielnumbers, securedname, datetime, amounts, details, securedaccountnumber, spendingmethods, receiptpics, bankname')
+    .eq('uuid', uuid)
+    .single() // 단일 레코드 반환
 
   if (error) {
     console.error('Error fetching data:', error);
