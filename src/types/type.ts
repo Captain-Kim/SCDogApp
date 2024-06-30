@@ -9,3 +9,16 @@ export interface Sponsorship {
     transactiontype: string;
     amounts: number;
 }
+
+export interface Expense {
+    uuid: string;
+    serielnumbers: string;
+    securedname: string;
+    datetime: Date;
+    amounts: number;
+    details: {content: string[]};
+    bankname: string;
+    securedaccountnumber: string;
+    spendingmethods: string;
+    receiptpics: {content: string[]};
+  }

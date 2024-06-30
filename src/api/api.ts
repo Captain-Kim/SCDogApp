@@ -33,7 +33,7 @@ export const fetchSponsorshipData = async () => {
 export const fetchExpenseData = async () => {
   const { data, error } = await supabase
     .from('bankstatement')
-    .select('uuid, serielnumbers, name, datetime, amounts, details, accountnumber, spendingmethods, receiptpics, bankname')
+    .select('uuid, serielnumbers, securedname, datetime, amounts, details, securedaccountnumber, spendingmethods, receiptpics, bankname')
     .eq('transactiontype','지출')
     .order('datetime', { ascending: false }); // 내림차순으로 정렬
     

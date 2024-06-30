@@ -44,6 +44,9 @@ const Header = () => {
           <Link to="/sponsorlist" className="text-right text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400">
             후원자 목록
           </Link>
+          <Link to="/expenselist" className="text-right text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400">
+            지출 목록
+          </Link>
         </nav>
       </div>
     </header>
