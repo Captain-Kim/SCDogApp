@@ -34,7 +34,7 @@ const ExpenseList = () => {
             <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105 border border-gray-300">
               <h2 className="text-xl font-semibold mb-2 text-aliceBlue">{useCommaFormat(expense.amounts)}원</h2>
               <p className=" font-semibold mb-2">{expense.serielnumbers}</p>
-              <div className="h-28">
+              <div className="h-[150px]">
                 <p className="text-gray-700">{expense.details.content[0]}</p>
               </div>
               <p className="text-gray-700">{new Date(expense.datetime).toLocaleDateString()}</p>

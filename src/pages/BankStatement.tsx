@@ -78,7 +78,7 @@ export default function BankStatement() {
   return (
     <div className=" py-12 sm:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h1 className="text-3xl font-bold mb-8 text-center">후원금 전체 내역</h1>
+        <h1 className="text-3xl font-bold mb-8 text-center">후원계좌 전체 내역</h1>
         <p>최근 업데이트 일: {latestDate ? new Date(latestDate).toLocaleDateString() : '데이터를 불러오는 중입니다...'}</p>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {stats.map((stat) => (
