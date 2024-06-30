@@ -84,7 +84,7 @@ export default function BankStatement() {
           {stats.map((stat) => (
             <div
               key={stat.id}
-              className="bg-white shadow-md rounded-lg p-6 transform transition-transform duration-300 hover:scale-105 border border-gray-300"
+              className="bg-white shadow-md rounded-lg p-6 border border-gray-300"
             >
               <dt className="text-sm font-medium text-gray-500">{stat.name}</dt>
               <dd className="mt-1 text-2xl font-semibold text-gray-900">{stat.value}</dd>
