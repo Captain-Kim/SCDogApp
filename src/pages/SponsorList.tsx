@@ -26,7 +26,7 @@ const SponsorList = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {sponsors && sponsors.map((sponsor) => (
           <Link to={`/sponsorlist/detail/${sponsor.uuid}`} key={sponsor.uuid}>
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105 border border-gray-300">
+            <div className="bg-white p-6 rounded-lg shadow-md duration-400 ease-in-out transition-transform transform hover:-translate-y-2 border border-gray-300">
               <h2 className="text-xl font-semibold mb-2">{sponsor.name}</h2>
               <h2 className="text-xl font-semibold mb-2 text-pastelRed">{useCommaFormat(sponsor.amounts)}원</h2>
               <p className="text-gray-700">{sponsor.serielnumbers}</p>
