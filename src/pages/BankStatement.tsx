@@ -60,10 +60,10 @@ export default function BankStatement() {
 
       const updatedStats: Stat[] = [
         { id: 1, name: '총 후원 금액', value: useCommaFormat(sponsorTotal) + '원' },
-        { id: 2, name: '총 지출 금액', value: useCommaFormat(expenseTotal) + '원' },
+        { id: 2, name: '총 지출 금액', value: useCommaFormat(Math.abs(expenseTotal)) + '원' },
         { id: 3, name: '계좌 실제 잔액', value: useCommaFormat(totalAmount) + '원' },
         { id: 4, name: '총 책임비 입금 금액', value: useCommaFormat(responsibilityDepositTotal) + '원' },
-        { id: 5, name: '총 책임비 반환 금액', value: useCommaFormat(responsibilityReturnTotal) + '원' },
+        { id: 5, name: '총 책임비 반환 금액', value: useCommaFormat(Math.abs(responsibilityReturnTotal)) + '원' },
         { id: 6, name: '책임비 잔여 금액', value: useCommaFormat(responsibilityBalances) + '원 (' + (responsibilityBalances / 200000) + ' 마리)' },
         { id: 7, name: '총 이자 금액', value: useCommaFormat(interestTotal) + '원' },
       ];
@@ -87,7 +87,15 @@ export default function BankStatement() {
               className="bg-white shadow-md rounded-lg p-6 border border-gray-300"
             >
               <dt className="text-sm font-medium text-gray-500">{stat.name}</dt>
-              <dd className="mt-1 text-2xl font-semibold text-gray-900">{stat.value}</dd>
+              <dd className={`mt-1 text-2xl font-semibold 
+              ${stat.name
+                  === '총 후원 금액' ? 'text-pastelRed' : stat.name
+                  === '총 지출 금액' ? 'text-argentinianBlue' : stat.name
+                  === '계좌 실제 잔액' ? 'text-lightSeaGreen' : 'text-gray-900'
+                }`
+              }>
+                {stat.value}
+              </dd>
             </div>
           ))}
         </div>

@@ -31,20 +31,25 @@ export const fetchSponsorshipData = async () => {
 };
 
 // 전체 지출내역 fetch
-export const fetchExpenseData = async () : Promise<Expense[]> => {
-  const { data, error } = await supabase
+const ITEMS_PER_PAGE = 20; // 스크롤 한 번 당 fetch할 데이터의 개수
+
+export const fetchExpenseData = async (page: number): Promise<Expense[]> => {
+  const start = page * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE - 1;
+
+  const { data, error }: { data: Expense[] | null; error: any } = await supabase
     .from('bankstatement')
-    .select('uuid, serielnumbers, securedname, datetime, amounts, details, securedaccountnumber, spendingmethods, receiptpics, bankname')
-    .eq('transactiontype','지출')
-    .order('datetime', { ascending: false }); // 내림차순으로 정렬
-    
+    .select('uuid, serielnumbers, name, datetime, amounts, securedname, securedaccountnumber, spendingmethods, details, receiptpics, bankname')
+    .eq('transactiontype', '지출')
+    .order('datetime', { ascending: false })
+    .range(start, end); // 데이터 범위 설정
 
   if (error) {
     console.error('Error fetching data:', error);
     throw error;
   }
 
-  return data;
+  return data ?? []; // null 반환 방지
 };
 
 // 특정 지출내역 fetch

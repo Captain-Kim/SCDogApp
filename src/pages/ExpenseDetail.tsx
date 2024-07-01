@@ -22,7 +22,9 @@ const ExpenseDetail = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="bg-white p-6">
         <div className="mb-4">
-          <h3 className="text-2xl font-semibold leading-7 text-gray-900 mb-2">{expenseUUID.serielnumbers}에 대한 상세 지출내역입니다.</h3>
+          <h3 className="text-2xl font-semibold leading-7 text-gray-900 mb-2">
+            <span className="text-argentinianBlue">{expenseUUID.serielnumbers}</span>에 대한 상세 지출내역입니다.
+          </h3>
           <p className="text-sm leading-6 text-gray-500">잘못된 정보나, 정보 비공개 요청은 관리자에게 연락해주세요.</p>
           <p className="text-sm leading-6 text-gray-500">부족한 정보는 계속해서 업데이트 중입니다. 관리해야 할 내용이 많아 시간이 다소 소요됩니다.</p>
         </div>
@@ -70,7 +72,9 @@ const ExpenseDetail = () => {
               <dd className="col-span-2">
                 <ul className="list-disc pl-5 space-y-1">
                   {expenseUUID.details.content.map((detail, index) => (
-                    <li key={index} className="text-sm leading-6 text-gray-700">{detail}</li>
+                    detail ? (
+                      <li key={index} className="text-sm leading-6 text-gray-700">{detail}</li>
+                    ) : null
                   ))}
                 </ul>
               </dd>

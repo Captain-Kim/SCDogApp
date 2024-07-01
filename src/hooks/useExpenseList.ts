@@ -1,18 +1,17 @@
-import { fetchExpenseData } from './../api/api';
-import { useQuery } from '@tanstack/react-query';
-
-// export interface Expense {
-//   uuid: string;
-//   serielnumbers: string;
-//   name: string;
-//   datetime: string;
-//   amounts: number;
-// }
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { fetchExpenseData} from '../api/api';
+import { Expense } from '../types/type';
 
 export const useExpenseList = () => {
-  return useQuery({
+  return useInfiniteQuery({
+    initialPageParam: 0,
     queryKey: ['ExpenseList'],
-    queryFn: fetchExpenseData,
+    getNextPageParam: (lastPage: Expense[], allPages) => {
+      if (lastPage.length === 0) return null;
+      return allPages.length;
+    },
+    queryFn: ({ pageParam }: { pageParam: number }) => fetchExpenseData(pageParam),
+    select: (data) => data.pages.flat(),
     staleTime: Infinity,
   });
 };
