@@ -9,6 +9,7 @@ import Layout from '../components/Layout';
 import Footer from '../components/Footer';
 import SupportInquiry from '../pages/SupportInquiry';
 import SpreadSheet from '../pages/SpreadSheet';
+import MapPage from '../pages/MapPage';
 
 const AppRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const AppRoutes = () => {
           <Route path="/expenselist/detail/:uuid" element={<ExpenseDetail />} />
           <Route path="/supportinquiry" element={<SupportInquiry />} />
           <Route path="/spreadsheet" element={<SpreadSheet />} />
+          <Route path="/mappage" element={<MapPage />} />
         </Routes>
       </Layout>
       <Footer/>
