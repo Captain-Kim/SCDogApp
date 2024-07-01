@@ -1,9 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
 import { fetchAllData } from '../api/api';
+import { useQuery } from '@tanstack/react-query';
 
-const useBankStatement = () => {
+const useBankStatement = (page: number, pageSize: number) => {
     return useQuery({
-        queryKey: ['bankstatement'],
+        queryKey: ['bankstatement', page, pageSize],
         queryFn: fetchAllData,
         staleTime: Infinity,
     });

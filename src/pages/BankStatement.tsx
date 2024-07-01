@@ -10,12 +10,6 @@ interface Stat {
   value: string | number;
 }
 
-// interface Sponsorship {
-//   id: number;
-//   transactiontype: string;
-//   amounts: number;
-// }
-
 const initialStats: Stat[] = [
   { id: 1, name: '총 후원 금액', value: 0 },
   { id: 2, name: '총 지출 금액', value: 0 },

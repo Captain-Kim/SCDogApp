@@ -22,3 +22,22 @@ export interface Expense {
     spendingmethods: string;
     receiptpics: {content: string[]};
   }
+
+export interface AllData {
+    uuid: string;
+    serielnumbers: string;
+    amounts: number;
+    transactiontype: string;
+    transactiontypedatails: string;
+    name: string;
+    securedname: string;
+    datetime: Date;
+    details: {content: string[]};
+    spendingmethods: string;
+    supportingpics: {content: string[]};
+    receiptpics: {content: string[]};
+    bankname: string;
+    accountnumber: string;
+    securedaccountnumber: string;
+    cafeurl: string;
+}
