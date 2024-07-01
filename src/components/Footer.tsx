@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
     return (
@@ -14,7 +15,7 @@ const Footer: React.FC = () => {
                         <a href="https://open.kakao.com/o/sWwjtTxe" target="_blank" className="hover:underline me-4 md:me-6">봉사문의</a>
                     </li>
                     <li>
-                        <a href="#" className="hover:underline me-4 md:me-6">후원문의</a>
+                        <Link to="/supportinquiry" className="hover:underline me-4 md:me-6">후원문의</Link>
                     </li>
                     <li>
                         <a href="https://map.naver.com/p/search/%EC%88%9C%EC%B0%BD%EA%B5%B0%20%EC%8B%9C%ED%97%98%ED%8F%AC/address/14142212.8228085,4223533.8036743,%EC%A0%84%EB%B6%81%20%EC%88%9C%EC%B0%BD%EA%B5%B0%20%EA%B5%AC%EB%A6%BC%EB%A9%B4%20%EC%9B%94%EC%A0%95%EB%A6%AC%20888?c=19.00,0,0,0,dh" target="_blank" className="hover:underline">보호소위치</a>

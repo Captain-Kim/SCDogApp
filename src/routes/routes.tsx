@@ -7,6 +7,7 @@ import ExpenseList from '../pages/ExpenseList';
 import ExpenseDetail from '../pages/ExpenseDetail';
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
+import SupportInquiry from '../pages/SupportInquiry';
 
 const AppRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const AppRoutes = () => {
           <Route path="/sponsorlist/detail/:uuid" element={<SponsorDetail />} />
           <Route path="/expenselist" element={<ExpenseList />} />
           <Route path="/expenselist/detail/:uuid" element={<ExpenseDetail />} />
+          <Route path="/supportinquiry" element={<SupportInquiry />} />
         </Routes>
       </Layout>
       <Footer/>
