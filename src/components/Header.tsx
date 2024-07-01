@@ -31,6 +31,11 @@ const Header = () => {
                 지출 목록
               </Link>
             </li>
+            <li>
+              <Link to="/spreadsheet" className="hover:text-cyan-500 transition-colors">
+                전체 통장내역
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
@@ -50,6 +55,11 @@ const Header = () => {
             <li>
               <Link to="/expenselist" className="hover:text-cyan-500 transition-colors" onClick={() => setIsOpen(false)}>
                 지출 목록
+              </Link>
+            </li>
+            <li>
+              <Link to="/spreadsheet" className="hover:text-cyan-500 transition-colors" onClick={() => setIsOpen(false)}>
+                전체 통장내역
               </Link>
             </li>
           </ul>

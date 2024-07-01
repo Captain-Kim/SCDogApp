@@ -5,7 +5,8 @@ import { Expense } from "../types/type";
 export const fetchAllData = async () => {
   const { data, error } = await supabase
     .from('bankstatement')
-    .select('*');
+    .select('*')
+    .order('datetime', { ascending: true }); // 오름차순, 오래된 순서
 
   if (error) {
     console.error('Error fetching data:', error);
