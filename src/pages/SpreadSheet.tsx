@@ -9,7 +9,7 @@ import { useCommaFormat } from '../hooks/useCommaFormat';
 const SpreadSheet = () => {
     const [page, setPage] = useState(1);
     const pageSize = 10;
-    const { data, isPending, isError } = useBankStatement(page, pageSize);
+    const { data, isFetching, isError } = useBankStatement(page, pageSize);
     const { data: latestDate } = useLatestDate();
     const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const SpreadSheet = () => {
         }
     };
 
-    if (isPending) return <div><LoadingSpinner /></div>;
+    if (isFetching) return <div><LoadingSpinner /></div>;
     if (isError) return <div>Error loading data</div>;
 
     const items = Array.isArray(data) ? data : (data as any)?.items || [];
@@ -60,8 +60,8 @@ const SpreadSheet = () => {
                                     </thead>
                                     <tbody>
                                         {items.map((item: AllData, index: number) => (
-                                            <tr key={index} className="border-b border-dashed last:border-b-0 text-center">
-                                                <td className="p-3 pl-0">{index + 1}</td>
+                                            <tr key={item.uuid} className="border-b border-dashed last:border-b-0 text-center">
+                                                <td className="p-3 pl-0">{(page - 1) * pageSize + index + 1}</td>
                                                 <td className="p-3 pr-0">{item.serielnumbers}</td>
                                                 <td className="p-3 pr-0">{useCommaFormat(item.amounts)}원</td>
                                                 <td className={`p-3 pr-12 ${item.transactiontype === '후원' ? 'text-pastelRed' : item.transactiontype === '지출' ? 'text-lightSeaGreen' : ''}`}>
@@ -96,6 +96,23 @@ const SpreadSheet = () => {
             </div>
             <div className="w-full max-w-full sm:w-3/4 mx-auto text-center">
                 <p className="text-sm text-slate-500 py-1"> 문의사항이 있으실 경우 일련번호로 문의주시면 빠른 답변이 가능합니다. </p>
+            </div>
+            <div className="flex justify-center my-4">
+                <button
+                    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                    disabled={page === 1}
+                    className="px-4 py-2 mx-1 bg-gray-200 rounded hover:bg-gray-300 disabled:bg-gray-100"
+                >
+                    이전
+                </button>
+                <span className="px-4 py-2 mx-1">{page}</span>
+                <button
+                    onClick={() => setPage((prev) => (items.length < pageSize ? prev : prev + 1))}
+                    disabled={items.length < pageSize}
+                    className="px-4 py-2 mx-1 bg-gray-200 rounded hover:bg-gray-300 disabled:bg-gray-100"
+                >
+                    다음
+                </button>
             </div>
         </div>
     );

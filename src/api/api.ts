@@ -2,11 +2,12 @@ import supabase from "./supabase";
 import { Expense } from "../types/type";
 
 // 전체 data fetch
-export const fetchAllData = async () => {
+export const fetchAllData = async ({ page, pageSize }: { page: number, pageSize: number }) => {
   const { data, error } = await supabase
     .from('bankstatement')
     .select('*')
-    .order('datetime', { ascending: true }); // 오름차순, 오래된 순서
+    .order('datetime', { ascending: true }) // 오름차순, 오래된 순서
+    .range((page - 1) * pageSize, page * pageSize - 1); // 페이지 범위 설정
 
   if (error) {
     console.error('Error fetching data:', error);
