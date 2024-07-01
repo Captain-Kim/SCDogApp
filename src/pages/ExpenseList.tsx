@@ -2,11 +2,12 @@ import { useExpenseList } from '../hooks/useExpenseList';
 import { Link } from 'react-router-dom';
 import { useCommaFormat } from '../hooks/useCommaFormat';
 import LoadingSpinner from '../components/Loading';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useLatestDate } from '../hooks/useLatestDate';
 
 const ExpenseList = () => {
+  const [showAlert, setShowAlert] = useState(true);
   const { ref, inView } = useInView({ threshold: 0 });
   const { data: expenses, isFetching, fetchNextPage, hasNextPage, error } = useExpenseList();
   const { data: latestDate } = useLatestDate();
@@ -20,12 +21,20 @@ const ExpenseList = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className='m-12 space-y-6'>
-        <div className="bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
-          <p className="font-bold">계속 업데이트 중입니다!</p>
-          <p className="text-sm">지출내역은 자료의 양이 많아 반영에 시간이 다소 소요되고 있습니다. 양해 부탁드립니다!</p>
+      {showAlert && (
+        <div className='m-12 space-y-6'>
+          <div className="bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3 relative" role="alert">
+            <span className="absolute top-0 bottom-0 right-0 px-4 py-3" onClick={() => setShowAlert(false)}>
+              <svg className="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <title>Close</title>
+                <path d="M14.348 5.652a1 1 0 10-1.414-1.414L10 7.172 7.066 4.238a1 1 0 00-1.414 1.414L8.586 10l-2.934 2.934a1 1 0 001.414 1.414L10 12.828l2.934 2.934a1 1 0 001.414-1.414L11.414 10l2.934-2.934z"/>
+              </svg>
+            </span>
+            <p className="font-bold">계속 업데이트 중입니다!</p>
+            <p className="text-sm">지출내역은 자료의 양이 많아 반영에 시간이 다소 소요되고 있습니다. 양해 부탁드립니다!</p>
+          </div>
         </div>
-      </div>
+      )}
 
       <h1 className="text-3xl font-bold mb-8 text-center">지출 목록</h1>
       <p>최근 업데이트 일: {latestDate ? new Date(latestDate).toLocaleDateString() : '데이터를 불러오는 중입니다...'}</p>
