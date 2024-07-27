@@ -39,7 +39,7 @@ export const fetchExpenseData = async (page: number): Promise<Expense[]> => {
   const start = page * ITEMS_PER_PAGE;
   const end = start + ITEMS_PER_PAGE - 1;
 
-  const { data, error }: { data: Expense[] | null; error: any } = await supabase
+  const { data, error }: { data: Expense[] | null; error: unknown } = await supabase
     .from('bankstatement')
     .select('uuid, serielnumbers, name, datetime, amounts, securedname, securedaccountnumber, spendingmethods, details, receiptpics, bankname')
     .eq('transactiontype', '지출')
@@ -88,4 +88,34 @@ export const fetchLatestDatetime = async () => {
   }
 
   return data?.[0]?.datetime || null;
+}
+
+// 공지글 fetch
+export const fetchNoticeData = async () => {
+  const { data, error } = await supabase
+    .from('notice')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+
+  return data;
+}
+
+// 특정 공지글 fetch
+export const fetchNoticeUUID = async (uuid: string) => {
+  const { data, error } = await supabase
+    .from('notice')
+    .select('*')
+    .eq('id', uuid)
+    .single();
+  
+  if (error) {
+    throw error;
+  }
+
+  return data;
 }

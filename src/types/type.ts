@@ -41,3 +41,11 @@ export interface AllData {
     securedaccountnumber: string;
     cafeurl: string;
 }
+
+export interface Notice {
+    id: string;
+    title: string;
+    content: string;
+    author: string;
+    created_at: Date;
+}

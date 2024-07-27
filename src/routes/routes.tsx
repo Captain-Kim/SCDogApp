@@ -10,6 +10,7 @@ import Footer from '../components/Footer';
 import SupportInquiry from '../pages/SupportInquiry';
 import SpreadSheet from '../pages/SpreadSheet';
 import MapPage from '../pages/MapPage';
+import NoticeBoard from '../pages/NoticeBoard';
 
 const AppRoutes = () => {
   return (
@@ -25,6 +26,8 @@ const AppRoutes = () => {
           <Route path="/supportinquiry" element={<SupportInquiry />} />
           <Route path="/spreadsheet" element={<SpreadSheet />} />
           <Route path="/mappage" element={<MapPage />} />
+          <Route path="/notice" element={<NoticeBoard />} />
+          {/* <Route path="/notice/:id" element={<NoticeDetail />} /> */}
         </Routes>
       </Layout>
       <Footer/>

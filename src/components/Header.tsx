@@ -17,6 +17,11 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-5">
           <ul className="flex items-center gap-5">
             <li>
+              <Link to="/notice" className="hover:text-cyan-500 transition-colors">
+                공지사항
+              </Link>
+            </li>
+            <li>
               <Link to="/" className="hover:text-cyan-500 transition-colors">
                 후원계좌 현황
               </Link>
