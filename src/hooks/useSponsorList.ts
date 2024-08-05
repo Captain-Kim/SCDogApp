@@ -1,50 +1,50 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
-import supabase from '../api/supabase';
+// import { useInfiniteQuery } from '@tanstack/react-query';
+// import supabase from '../api/supabase';
 
-export interface Sponsor {
-  uuid: string;
-  serielnumbers: string;
-  name: string;
-  datetime: string;
-  amounts: number;
-}
+// export interface Sponsor {
+//   uuid: string;
+//   serielnumbers: string;
+//   name: string;
+//   datetime: string;
+//   amounts: number;
+// }
 
-const ITEMS_PER_PAGE = 20; // 스크롤 한 번 당 fetch할 데이터의 개수
+// const ITEMS_PER_PAGE = 20; // 스크롤 한 번 당 fetch할 데이터의 개수
 
-const fetchSponsorData = async (page: number): Promise<Sponsor[]> => {
+// const fetchSponsorData = async (page: number): Promise<Sponsor[]> => {
 
-  const start = page * ITEMS_PER_PAGE;
-  const end = start + ITEMS_PER_PAGE - 1;
+//   const start = page * ITEMS_PER_PAGE;
+//   const end = start + ITEMS_PER_PAGE - 1;
 
-  const { data, error }: { data: Sponsor[] | null; error: any } = await supabase
-    .from('bankstatement')
-    .select('uuid, serielnumbers, name, datetime, amounts')
-    .eq('transactiontype', '후원')
-    .order('datetime', { ascending: false })
-    .range(start, end); // 데이터 범위 설정
+//   const { data, error }: { data: Sponsor[] | null; error: any } = await supabase
+//     .from('bankstatement')
+//     .select('uuid, serielnumbers, name, datetime, amounts')
+//     .eq('transactiontype', '후원')
+//     .order('datetime', { ascending: false })
+//     .range(start, end); // 데이터 범위 설정
 
 
-  if (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
+//   if (error) {
+//     console.error('Error fetching data:', error);
+//     throw error;
+//   }
 
-  return data ?? []; // null 반환 방지
-};
+//   return data ?? []; // null 반환 방지
+// };
 
-export const useSponsorList = () => {
+// export const useSponsorList = () => {
 
-  // const [page, setPage] = useState(0); // 현재 페이지 번호를 저장할 상태
+//   // const [page, setPage] = useState(0); // 현재 페이지 번호를 저장할 상태
 
-  return useInfiniteQuery({
-    initialPageParam: 0,
-    queryKey: ['sponsorList'],
-    getNextPageParam: (lastPage: Sponsor[], allPages) => {
-      if (lastPage.length === 0) return null;
-      return allPages.length
-    },
-    queryFn: ({ pageParam }: { pageParam: number }) => fetchSponsorData(pageParam),
-    select: (data) => data.pages.flat(),
-    staleTime: Infinity,
-  });
-};
+//   return useInfiniteQuery({
+//     initialPageParam: 0,
+//     queryKey: ['sponsorList'],
+//     getNextPageParam: (lastPage: Sponsor[], allPages) => {
+//       if (lastPage.length === 0) return null;
+//       return allPages.length
+//     },
+//     queryFn: ({ pageParam }: { pageParam: number }) => fetchSponsorData(pageParam),
+//     select: (data) => data.pages.flat(),
+//     staleTime: Infinity,
+//   });
+// };
