@@ -39,7 +39,7 @@ export interface AllData {
     bankname: string;
     accountnumber: string;
     securedaccountnumber: string;
-    cafeurl: string;
+    cafesurl: string;
 }
 
 export interface Notice {

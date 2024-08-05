@@ -1,16 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from '../components/Header';
-import SponsorDetail from '../pages/SponsorDetail';
-import SponsorList from '../pages/SponsorList';
-import BankStatement from '../pages/BankStatement';
-import ExpenseList from '../pages/ExpenseList';
-import ExpenseDetail from '../pages/ExpenseDetail';
+// import SponsorDetail from '../pages/SponsorDetail';
+// import SponsorList from '../pages/SponsorList';
+// import BankStatement from '../pages/BankStatement';
+// import ExpenseList from '../pages/ExpenseList';
+// import ExpenseDetail from '../pages/ExpenseDetail';
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
-import SupportInquiry from '../pages/SupportInquiry';
-import SpreadSheet from '../pages/SpreadSheet';
-import MapPage from '../pages/MapPage';
-import NoticeBoard from '../pages/NoticeBoard';
+// import SupportInquiry from '../pages/SupportInquiry';
+// import SpreadSheet from '../pages/SpreadSheet';
+// import MapPage from '../pages/MapPage';
+// import NoticeBoard from '../pages/NoticeBoard';
+// import CreateBankStatement from '../pages/CreateBankStatement';
+import Notice from '../pages/Notice';
 
 const AppRoutes = () => {
   return (
@@ -18,16 +20,17 @@ const AppRoutes = () => {
       <Header />
       <Layout>
         <Routes>
-          <Route path="/" element={<BankStatement />} />
+          {/* <Route path="/" element={<BankStatement />} />
           <Route path="/sponsorlist" element={<SponsorList />} />
           <Route path="/sponsorlist/detail/:uuid" element={<SponsorDetail />} />
           <Route path="/expenselist" element={<ExpenseList />} />
           <Route path="/expenselist/detail/:uuid" element={<ExpenseDetail />} />
           <Route path="/supportinquiry" element={<SupportInquiry />} />
           <Route path="/spreadsheet" element={<SpreadSheet />} />
-          <Route path="/mappage" element={<MapPage />} />
-          <Route path="/notice" element={<NoticeBoard />} />
-          {/* <Route path="/notice/:id" element={<NoticeDetail />} /> */}
+          <Route path="/mappage" element={<MapPage />} /> */}
+          {/* <Route path="/notice" element={<NoticeBoard />} /> */}
+          <Route path="/" element={<Notice />} />
+          {/* <Route path="/create" element={<CreateBankStatement />} /> */}
         </Routes>
       </Layout>
       <Footer/>
